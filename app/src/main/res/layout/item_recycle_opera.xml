@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorSecondary"
+    android:elevation="10sp"
+    android:id="@+id/item_recycle_opera"
+    tools:showIn="@layout/activity_ver_ativo">
+
+    <TextView
+        android:id="@+id/titulo_tabela_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="5sp"
+        android:text="11/09/2021"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/titulo_tabela_opera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20sp"
+        android:text="Compra"
+        android:textSize="14sp"
+        android:layout_toEndOf="@+id/titulo_tabela_data"
+        android:layout_marginStart="30sp"/>
+
+    <TextView
+        android:id="@+id/titulo_tabela_qtde"
+        android:layout_width="50sp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:autoSizeTextType="uniform"
+        android:layout_centerVertical="true"
+        android:maxLines="1"
+        android:layout_marginStart="15sp"
+        android:layout_toRightOf="@+id/titulo_tabela_opera"
+        android:text="60"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/preco"
+        android:layout_width="wrap_content"
+        android:maxHeight="60sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="25sp"
+        android:layout_marginTop="20sp"
+        android:layout_toEndOf="@id/titulo_tabela_qtde"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:text="100"
+        android:textSize="14sp" />
+
+    <ImageButton
+        android:id="@+id/button_excluir_opera"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16sp"
+        android:layout_toEndOf="@+id/preco"
+        android:backgroundTint="@color/colorSecondary"
+        android:src="@drawable/ic_baseline_close_24" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/colorPrimaryVariant"
+        android:layout_marginTop="60sp"
+        tools:ignore="NotSibling">
+    </LinearLayout>
+</RelativeLayout>

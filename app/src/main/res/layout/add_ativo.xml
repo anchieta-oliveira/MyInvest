@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
+
+
+    <LinearLayout
+        android:id="@+id/bar_inutil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:layout_margin="10sp"
+        android:visibility="invisible"
+        android:backgroundTint="@color/colorSecondary"
+        android:background="@drawable/bordas_arredondadas">
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/perfil_ativo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30sp"
+        android:layout_below="@+id/bar_inutil"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:src="@color/black"
+            android:layout_gravity="center">
+        </ImageView>
+        <TextView
+            android:id="@+id/cod_ativo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CodAtivo"
+            android:textSize="20sp"
+            android:layout_gravity="center">
+        </TextView>
+        <TextView
+            android:id="@+id/nome_ativo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Ativo"
+            android:textSize="14sp"
+            android:layout_gravity="center">
+        </TextView>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/text_operacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfil_ativo"
+        android:layout_marginStart="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
+        android:text="Operação"
+        android:textSize="20sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_operacao"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="30sp"
+        android:text="Data"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_quantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_data"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="40sp"
+        android:text="Quantidade"
+        android:textSize="20sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/text_preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_quantidade"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="40sp"
+        android:text="Preço"
+        android:textSize="20sp">
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/conteiner_compra_venda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfil_ativo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginTop="35sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compra"
+            android:textSize="18sp">
+        </TextView>
+
+        <Switch
+            android:id="@+id/button_conpra_venda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10sp"
+            android:trackTint="@color/switch_selector"
+            android:thumbTint="@color/switch_selector"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Venda"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/conteiner_compra_venda"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10sp"
+        android:inputType="date"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorPrimary"
+        android:gravity="right"
+        android:hint="dd/mm/yyyy"
+        android:textSize="20sp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_qauntidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_data"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorPrimary"
+        android:gravity="right"
+        android:hint="        0"
+        android:inputType="number"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edit_preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_qauntidade"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorPrimary"
+        android:gravity="right"
+        android:hint="        0.0"
+        android:inputType="numberDecimal"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_incluir_ativo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_preco"
+        android:layout_centerInParent="true"
+        android:elevation="50sp"
+        android:text="Incluir"
+        android:visibility="gone"
+        android:textColor="@color/colorOnSecondary"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginTop="50dp">
+    </Button>
+
+    <LinearLayout
+        android:id="@+id/conteiner_pesquisa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/bar_pesquisar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:background="@drawable/bordas_arredondadas"
+            android:backgroundTint="@color/colorSecondary"
+            android:elevation="5dp"
+            android:visibility="visible">
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Seu ativo"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@android:color/transparent">
+            </SearchView>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_busca"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="15sp"
+            android:layout_marginBottom="10sp"
+            android:visibility="visible"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/item_busca_recycle">
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
