@@ -19,15 +19,12 @@ import kotlinx.coroutines.Dispatchers.Main
 
 
 class AddAtivo : AppCompatActivity() {
-    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_ativo)
         val recycleViewBsuca = findViewById<RecyclerView>(R.id.recycle_busca)
         recycleViewBsuca.visibility = View.GONE
-
-
 
         pesquisaAtivo()
         incluir()
@@ -56,7 +53,6 @@ class AddAtivo : AppCompatActivity() {
 
             val novoAtivo = Ativo(codAtivo,intent.getStringExtra("AtivoNome"), qunatidade, precoMedioInicial)
 
-
             CoroutineScope(Default).launch {
                 try {
                     MyInvestApplication.instance.helperDBAtivos?.addAtivo(novoAtivo)
@@ -72,6 +68,7 @@ class AddAtivo : AppCompatActivity() {
         }
 
     }
+
     fun pesquisaAtivo(){
         val recycleViewBsuca = findViewById<RecyclerView>(R.id.recycle_busca)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

@@ -3,7 +3,6 @@ package com.example.myinvest
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +38,6 @@ class VerAtivo : AppCompatActivity() {
 
     }
 
-
     fun AddOpera(){
 
         val buttonAddOpera = findViewById<FloatingActionButton>(R.id.add_opera)
@@ -51,7 +49,6 @@ class VerAtivo : AppCompatActivity() {
     }
 
     fun clickExcluirOpera(opera: Operacao){
-        Log.i("Erro", "Cliquei no butão x")
         MyInvestApplication.instance.helperDBAtivos?.excluirOpera(opera)
         CoroutineScope(Default).launch {
             ativoAtual?.setInfoAtivo()
@@ -59,7 +56,6 @@ class VerAtivo : AppCompatActivity() {
                 try {
                     carregaOpera()
                     setText()
-                    Log.i("Erro", "Cliquei no butão x2")
                 }catch (e:Exception){}
 
             }
@@ -76,13 +72,14 @@ class VerAtivo : AppCompatActivity() {
                 val irHome = Intent(this, MainActivity::class.java)
                 startActivity(irHome)
             }
-            Log.i("TAG", "Cliquei ")
+
         }
         recycleViewOpera.adapter = operaAdapter
 
         recycleViewOpera.visibility = View.VISIBLE
 
     }
+
     fun carregaOpera(){
         CoroutineScope(Default).launch {
             // executa paralelo à UI thread
@@ -97,7 +94,6 @@ class VerAtivo : AppCompatActivity() {
 
 
     fun carregarDBOpera(): MutableList<Operacao> {
-       // val ativoAtual = intent.getStringExtra("VerAtivo")
 
         val operaSQL = MyInvestApplication.instance.helperDBAtivos?.getOpera(ativoAtual!!.codAtivo) ?: mutableListOf()
         return operaSQL
@@ -109,7 +105,6 @@ class VerAtivo : AppCompatActivity() {
 
     fun getExtraAtivo(){
         ativoAtual = intent.getParcelableExtra(EXTRA_ATIVO)
-
     }
 
     fun setText(){

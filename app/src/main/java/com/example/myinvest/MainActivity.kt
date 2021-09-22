@@ -115,8 +115,8 @@ class MainActivity : AppCompatActivity() {
         }else{
             textRentabilidadeCarteira.setTextColor(Color.GREEN)
         }
-
     }
+
     fun expandirListaAtivos(){
         val buttonExmpandir = findViewById<ImageButton>(R.id.buton_expand_list)
         val graficoCarteira = findViewById<AAChartView>(R.id.aa_chart_view)

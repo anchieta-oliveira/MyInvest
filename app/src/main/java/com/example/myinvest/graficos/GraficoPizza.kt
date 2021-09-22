@@ -43,6 +43,5 @@ class GraficoPizza() {
         return graficoPizza
     }
 
-
 }
 

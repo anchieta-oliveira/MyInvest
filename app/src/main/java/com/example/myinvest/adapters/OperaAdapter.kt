@@ -24,18 +24,6 @@ class OperaAdapter(private val dataOpera: MutableList<Operacao>, private val con
             itemOpera.text = opera.tipo
             itemQtde.text = opera.quantidade.toString()
             itemPreco.text = opera.preco.toString()
-            /*
-            bottonExclir.setOnClickListener{
-                if (dataOpera.size == 1) {
-                    MyInvestApplication.instance.helperDBAtivos?.excluirAtivo(opera.codAtivo)
-                }
-                MyInvestApplication.instance.helperDBAtivos?.excluirOpera(opera)
-                dataOpera.remove(opera)
-                notifyItemRemoved(adapterPosition)
-                VerAtivo().atualizaarPagina()
-            }
-
-             */
             with(bottonExclir){
                 setOnClickListener{
                     onClick.invoke(opera)

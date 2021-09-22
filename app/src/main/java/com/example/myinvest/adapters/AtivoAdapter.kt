@@ -23,7 +23,6 @@ class AtivoAdapter(private val dataListAtivos: MutableList<Ativo>, private val c
         val rentabilidade = itemView.findViewById<TextView>(R.id.Item_rentabilidade)
 
 
-
         fun bind(ativo:Ativo){
             val forDecimal = DecimalFormat("#,###.00")
 

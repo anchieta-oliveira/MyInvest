@@ -16,17 +16,17 @@ class HelperDBAtivos(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     private val CREATE_TABLE_ATIVOS =
-        "CREATE TABLE ${AtivoContract.AtivoEntry.TABLE_NAME} ("+
+        "CREATE TABLE ${AtivoContract.AtivoEntry.TABLE_NAME} (" +
                 "${AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO} TEXT PRIMARY KEY," +
                 "${AtivoContract.AtivoEntry.COLUMN_NAME_NOME} TEXT)"
 
     private val CREATE_TABLE_OPERACAO =
-        "CREATE TABLE ${AtivoContract.Opereraca.TABLE_NAME} ("+
+        "CREATE TABLE ${AtivoContract.Opereraca.TABLE_NAME} (" +
                 "${AtivoContract.Opereraca.COLUMN_NAME_CODIGO} TEXT REFERENCES ${AtivoContract.AtivoEntry.TABLE_NAME}" +
-                "(${AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO}),"+
-                "${AtivoContract.Opereraca.COLUMN_NAME_TIPO} TEXT,"+
+                "(${AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO})," +
+                "${AtivoContract.Opereraca.COLUMN_NAME_TIPO} TEXT," +
                 "${AtivoContract.Opereraca.COLUMN_NAME_DATA} TEXT," +
-                "${AtivoContract.Opereraca.COLUMN_NAME_QUANT} TEXT,"+
+                "${AtivoContract.Opereraca.COLUMN_NAME_QUANT} TEXT," +
                 "${AtivoContract.Opereraca.COLUMN_NAME_PRECO} TEXT," +
                 "${BaseColumns._ID} integer PRIMARY KEY AUTOINCREMENT)"
 
@@ -40,16 +40,15 @@ class HelperDBAtivos(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        if (oldVersion != newVersion){
+        if (oldVersion != newVersion) {
             db?.execSQL(DROP_TABLE_ATIVO)
             db?.execSQL(DROP_TABLE_OPERA)
         }
     }
 
-// Lembrar de colocar função de atualizar ativo na tabela de ativo toda vez que fizer nova compra, assim mudando a quantidade e preco medio.
 
- fun addAtivo(ativo: Ativo){
-        val db = writableDatabase?:return
+    fun addAtivo(ativo: Ativo) {
+        val db = writableDatabase ?: return
         var valores = ContentValues().apply {
             put(AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO, ativo.codAtivo)
             put(AtivoContract.AtivoEntry.COLUMN_NAME_NOME, ativo.nome)
@@ -58,29 +57,30 @@ class HelperDBAtivos(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
-
     fun getAtivo(): MutableList<Ativo> {
         val db = readableDatabase ?: return mutableListOf<Ativo>()
         val lista = mutableListOf<Ativo>()
-        val cursor = db.query(AtivoContract.AtivoEntry.TABLE_NAME, null, null, null, null, null, null)
-        while (cursor.moveToNext()){
+        val cursor =
+            db.query(AtivoContract.AtivoEntry.TABLE_NAME, null, null, null, null, null, null)
+        while (cursor.moveToNext()) {
             try {
-                //val ativoBd = InfoAtivo().getAtivo(cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO)))
-
-                val ativoBd = Ativo(cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.AtivoEntry.COLUMN_NAME_NOME)))
+                val ativoBd = Ativo(
+                    cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.AtivoEntry.COLUMN_NAME_NOME))
+                )
                 ativoBd.setInfoAtivo()
 
                 lista.add(ativoBd)
-            }catch (e:Exception){}
+            } catch (e: Exception) {
+            }
 
         }
         db.close()
         return lista
     }
 
-    fun addOperacao(opera: Operacao){
-        val db = writableDatabase?:return
+    fun addOperacao(opera: Operacao) {
+        val db = writableDatabase ?: return
         var valores = ContentValues().apply {
             put(AtivoContract.Opereraca.COLUMN_NAME_CODIGO, opera.codAtivo)
             put(AtivoContract.Opereraca.COLUMN_NAME_TIPO, opera.tipo)
@@ -98,15 +98,16 @@ class HelperDBAtivos(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         args = arrayOf(codFiltro)
         Log.i("Atual ", "$codFiltro")
         var lista = mutableListOf<Operacao>()
-        var cursor = db.query(AtivoContract.Opereraca.TABLE_NAME, null, where, args, null, null, null)
-        while (cursor.moveToNext()){
+        var cursor =
+            db.query(AtivoContract.Opereraca.TABLE_NAME, null, where, args, null, null, null)
+        while (cursor.moveToNext()) {
             var opera = Operacao(
-                    cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_CODIGO)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_TIPO)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_DATA)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_QUANT)),
-                    cursor.getDouble(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_PRECO)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
+                cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_CODIGO)),
+                cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_TIPO)),
+                cursor.getString(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_DATA)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_QUANT)),
+                cursor.getDouble(cursor.getColumnIndexOrThrow(AtivoContract.Opereraca.COLUMN_NAME_PRECO)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
             )
             lista.add(opera)
         }
@@ -114,40 +115,29 @@ class HelperDBAtivos(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         return lista
     }
 
-    fun excluirOpera(opera: Operacao){
-        val db = writableDatabase?:return
+    fun excluirOpera(opera: Operacao) {
+        val db = writableDatabase ?: return
         val sql = "DELETE FROM ${AtivoContract.Opereraca.TABLE_NAME} WHERE ${BaseColumns._ID} = ?"
         val arg = arrayOf(opera.id)
         try {
             db.execSQL(sql, arg)
             db.close()
-        }catch (e: java.lang.Exception){
+        } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
     }
 
-    fun excluirAtivo(ativo: String){
-        val db = writableDatabase?:return
-        val sql = "DELETE FROM ${AtivoContract.AtivoEntry.TABLE_NAME} WHERE ${AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO} = ?"
+    fun excluirAtivo(ativo: String) {
+        val db = writableDatabase ?: return
+        val sql =
+            "DELETE FROM ${AtivoContract.AtivoEntry.TABLE_NAME} WHERE ${AtivoContract.AtivoEntry.COLUMN_NAME_CODIGO} = ?"
         val arg = arrayOf(ativo)
         try {
             db.execSQL(sql, arg)
             db.close()
-        }catch (e: java.lang.Exception){
+        } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
-    }
-
-
-    fun verificarAtivo(codAtivo:String): Boolean { // Verificar se o ativo já esta na carteira -- Incompleto
-        val db = readableDatabase
-
-        val cursor = db.rawQuery("SELECT EXISTS (SELECT " +
-                "${codAtivo} FROM " +
-                "${AtivoContract.AtivoEntry.TABLE_NAME})", null)
-
-        return cursor != null
-
     }
 
 }

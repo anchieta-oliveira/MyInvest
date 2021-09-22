@@ -8,7 +8,6 @@ class InfoAtivo {
 
 
     fun getNome(cod: String): String? {
-        //vai ter que usar o de busca
 
         val dataNativo = ConectionApi().infoAtivo(cod)
         val nomeAtivo = dataNativo?.getString("2. name")

@@ -2,7 +2,6 @@ package com.example.myinvest
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +17,6 @@ import kotlinx.coroutines.withContext
 
 class AddOpera : AppCompatActivity() {
 
-
     private var ativoAtual: Ativo? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +27,6 @@ class AddOpera : AppCompatActivity() {
         buttonIncluir.visibility = View.VISIBLE
         getExtraAtivo()
         try{
-
             atualizarPerfilAtivo()
             addAtivo()
 
@@ -39,7 +36,6 @@ class AddOpera : AppCompatActivity() {
 
     fun getExtraAtivo(){
         ativoAtual = intent.getParcelableExtra(EXTRA_ATIVO)
-
     }
 
     fun atualizarPerfilAtivo(){
@@ -55,7 +51,6 @@ class AddOpera : AppCompatActivity() {
     fun addAtivo(){
         val codAtivo = ativoAtual!!.codAtivo
         val nomeAtivo = ativoAtual?.codAtivo.toString()
-        Log.i("Ativo novo", codAtivo)
 
         val editData = findViewById<EditText>(R.id.edit_data)
         val editPreco = findViewById<EditText>(R.id.edit_preco)
@@ -63,17 +58,14 @@ class AddOpera : AppCompatActivity() {
         val buttonIncluir = findViewById<Button>(R.id.button_incluir_ativo)
         val buttonTipo = findViewById<Switch>(R.id.button_conpra_venda)
 
-
         buttonIncluir.setOnClickListener{
             val tipo = if (buttonTipo.isChecked){ "VENDA" } else {"COMPRA"}
 
             val qunatidade = ediQuntidade.text.toString().toInt()
             val precoCompra = editPreco.text.toString().toDouble()
 
-
             val novaOperacao = Operacao(codAtivo, tipo,
                     editData.text.toString(),qunatidade, precoCompra, null)
-
 
             CoroutineScope(Default).launch {
                 val ativoAtualizado = Ativo(codAtivo, nomeAtivo)
@@ -81,7 +73,6 @@ class AddOpera : AppCompatActivity() {
                     MyInvestApplication.instance.helperDBAtivos?.addOperacao(novaOperacao)
                     ativoAtualizado.setInfoAtivo()
                 }catch (e: Exception){}
-
                 withContext(Main) {
                     val irVerAtivo = Intent(this@AddOpera, VerAtivo::class.java)
                     irVerAtivo.putExtra(EXTRA_ATIVO, ativoAtualizado)
