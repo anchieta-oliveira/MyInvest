@@ -86,7 +86,7 @@ class AddAtivo : AppCompatActivity() {
             override fun onQueryTextChange(busca: String?): Boolean {
                 if (busca != null) {
                     try {
-                        //carregarRecycleBusca(busca)
+                        carregarRecycleBusca(busca)
 
                     }catch (e: Exception){}
                 }else{
