@@ -46,14 +46,14 @@
             android:autoSizeTextType="uniform"
             android:maxWidth="200sp"
             android:maxLines="1"
-            android:text="R$ 100,00 (-22,90%)"
+            android:text="Rentabilidade da Carteira"
             android:textAlignment="center" />
 
 
         <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
             android:id="@+id/aa_chart_view"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="230dp"
             android:layout_gravity="center"
             android:layout_margin="5sp"
             android:visibility="visible">

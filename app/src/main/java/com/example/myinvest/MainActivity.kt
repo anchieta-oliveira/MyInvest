@@ -48,8 +48,6 @@ class MainActivity : AppCompatActivity() {
         val graficoCarteira = findViewById<AAChartView>(R.id.aa_chart_view)
         graficoCarteira.aa_drawChartWithChartModel(GraficoPizza().graficoPizzaAtivo(data))
 
-
-
     }
 
     private fun buttonMenu() {
@@ -107,7 +105,6 @@ class MainActivity : AppCompatActivity() {
         val posicaoCarteira = Carteira().getposicaoAtual(data)
         val textPosicaoCarteira = findViewById<TextView>(R.id.carteira_posicao)
         val textRentabilidadeCarteira = findViewById<TextView>(R.id.carteira_rentabilidade)
-
         textPosicaoCarteira.text = "R$ " + forDecimal.format(posicaoCarteira)
         textRentabilidadeCarteira.text = "R$ ${forDecimal.format(resultadoCarteira)} (${forDecimal.format(rentabilidadeCarteira)}%)"
         if (rentabilidadeCarteira <0){
@@ -166,7 +163,7 @@ class MainActivity : AppCompatActivity() {
             alpha = 1f
             visibility = View.VISIBLE
             animate().alpha(0f)
-                .setDuration(100)
+                .setDuration(300)
                 .setListener(null)
 
         }
