@@ -26,8 +26,8 @@ class GraficoPizza() {
         val graficoPizza = AAChartModel()
             .chartType(AAChartType.Pie)
             .backgroundColor("#F8F8FA")
-            //.dataLabelsEnabled(true)
-            .yAxisTitle("℃")
+            .dataLabelsEnabled(true)
+            .yAxisTitle("R$")
             .legendEnabled(false)
             .series(arrayOf(
                 AASeriesElement()

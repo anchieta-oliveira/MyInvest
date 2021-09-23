@@ -140,19 +140,22 @@ class MainActivity : AppCompatActivity() {
         val nomeMyInvest = findViewById<ImageView>(R.id.text_icon)
         conteinerAbertura.visibility = View.VISIBLE
         nomeMyInvest.apply {
-            scaleX = 0.6f
-            scaleY = 0.6f
+
             alpha = 0f
             visibility = View.VISIBLE
             animate().alpha(1f)
                 .setDuration(200)
                 .setListener(null)
 
+            /*
+            scaleX = 0.6f
+            scaleY = 0.6f
             animate()
                 .scaleX(1f)
                 .scaleY(1f)
                 .setDuration(1000)
 
+             */
         }
 
     }
